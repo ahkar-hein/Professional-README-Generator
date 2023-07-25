@@ -65,6 +65,49 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
+    inquirer.prompt(questions)
+        .then((answers) => {
+            const { username, email, projectName, description, license, install, test, usage, contributing } = answers;
+
+            const readmeContent = `
+# ${projectName}
+
+## Description 
+${description}
+
+## Table of Contents
+            
+If your README is very long, add a table of contents to make it easy for users to find what they need.
+            
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [Contributing](#Contributing)
+* [Tests](#tests)
+* [Question](#question)
+            
+## Installation
+${install}
+            
+## Usage 
+${usage}
+            
+## License
+${license}
+            
+## Contributing
+${contributing}
+            
+## Tests
+To run the test, run the following commend:
+
+${test}
+            
+## Question
+If you have any questions about this repo, contact me directly at ${email}. You can find more my work at [${username}](https://github.com/${username})`;
+
+            writeToFile('README1.md', readmeContent);
+    })
     
 }
 
