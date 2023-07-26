@@ -1,9 +1,9 @@
-// TODO: Include packages needed for this application
+// Include package need for this application.
 const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown.js');
 
-// TODO: Create an array of questions for user input
+// Questions array to ask the user.
 const questions = [
     {
         type: 'input',
@@ -35,11 +35,13 @@ const questions = [
         type: 'input',
         name: 'install',
         message: 'What commend should be run to install dependecies?',
+        default: 'npm i',
     },
     {
         type: 'input',
         name: 'test',
         message: 'What commend should be run to run test?',
+        default: 'npm test',
     },
     {
         type: 'input',
@@ -53,9 +55,11 @@ const questions = [
     },
 ];
 
-// TODO: Create a function to write README file
+// This function for write the readme file.
 function writeToFile(fileName, data) {
+    // Generate the readme file by using fs package.
     fs.writeFile(fileName, data, (err) => {
+        // if condition for err.
         if (err) {
             console.error(err);
         } else {
@@ -64,11 +68,14 @@ function writeToFile(fileName, data) {
     });
 }
 
-// TODO: Create a function to initialize app
+// This functon for initialize the application.
 function init() {
+    // prompt the question that is from the question array by using inquirer package.
     inquirer.prompt(questions)
         .then((answers) => {
+            // Destructure the 'answers' object to extract individual properties
             const { username, email, projectName, description, license, install, test, usage, contributing } = answers;
+            // Create a 'data' object to store the extracted properties
             const data = {
                 username: username,
                 email: email,
@@ -80,9 +87,9 @@ function init() {
                 usage: usage,
                 contributing: contributing,
             }
-            writeToFile('README1.md', generateMarkdown(data));
+            // execute the writeTofile function.
+            writeToFile('README.md', generateMarkdown(data));
     })
-    
 }
 
 // Function call to initialize app

@@ -1,40 +1,41 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// This function for render the license badge.
 function renderLicenseBadge(license) {
   if (license === 'None') {
     return '';
   }
+  // return badge if user choose the license.
   return `![License](https://img.shields.io/badge/license-${encodeURIComponent(license)}-blue.svg)`;
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// For render license link
 function renderLicenseLink(license) {
   if (license === 'None') {
     return '';
   }
+  // return license link if user choose the license.
   return `https://opensource.org/license/${license}/`;
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// function for render license section.
 function renderLicenseSection(license) {
   if (license === 'None') {
     return '';
   }
+  // return license section if user choose the license
   return `## License
 This application is covered under the [${license} license].
 `;
 }
 
-// TODO: Create a function to generate markdown for README
+// This function for generate the readme layout.
 function generateMarkdown(data) {
+  // declare the variables to execute the function.
   const licenseBadge = renderLicenseBadge(data.license);
   const licenseLink = renderLicenseLink(data.license);
   const licenseSection = renderLicenseSection(data.license);
 
-  return `
-# ${data.projectName}
+  // return the readme layout.
+  return `# ${data.projectName}
 
 ## Description 
 ${data.description}
@@ -48,11 +49,13 @@ If your README is very long, add a table of contents to make it easy for users t
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
-* [Contributing](#Contributing)
+* [Contributing](#contributing)
 * [Tests](#tests)
 * [Question](#question)
             
 ## Installation
+Run the following commend for installation.
+
 ${data.install}
             
 ## Usage 
@@ -76,4 +79,5 @@ If you have any questions about this repo, contact me directly at ${data.email}.
   `;
 }
 
+// export the generateMarkdown js file.
 module.exports = generateMarkdown;
